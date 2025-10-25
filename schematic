@@ -1,0 +1,9 @@
+common anode of both digits connected to nano's d2 and d3 pins
+other pins(segment pins) connected to d4 to d10 with a 220ohm resistor
+A-220R-D4
+B-220R-D5
+C-220R-D6
+D-220R-D7
+E-220R-D8
+F-220R-D9
+G-220R-D10
