@@ -1,0 +1,29 @@
+#include "SevSeg.h"
+SevSeg sevseg;
+
+void setup() {
+  byte numDigits = 2;
+  byte digitPins[] = {2, 3}; // each goes directly to a common anode
+  byte segmentPins[] = {4, 5, 6, 7, 8, 9, 10}; // a,b,c,d,e,f,g
+  bool resistorsOnSegments = true;
+  byte hardwareConfig = COMMON_ANODE; // important!
+  bool updateWithDelays = false;
+  bool leadingZeros = false;
+  bool disableDecPoint = true;
+
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins,
+               resistorsOnSegments, updateWithDelays, leadingZeros, disableDecPoint);
+  sevseg.setBrightness(90);
+}
+
+void loop() {
+  static unsigned long timer = millis();
+  static int value = 0;
+
+  if (millis() - timer >= 500) {
+    timer += 500;
+    value = (value + 1) % 100;  // 00–99
+    sevseg.setNumber(value);
+  }
+  sevseg.refreshDisplay();
+}
